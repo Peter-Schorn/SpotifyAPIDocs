@@ -26,7 +26,9 @@ let package = Package(
             dependencies: [
                 .product(name: "Vapor", package: "vapor"),
             ],
-            exclude: ["VaporDocC.docc"]
+            resources: [
+                .copy("SpotifyWebAPI.doccarchive")
+            ]
         ),
         .testTarget(
             name: "VaporDocCTests",

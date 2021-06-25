@@ -2,7 +2,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "VaporDocC",
+    name: "SpotifyAPIDocs",
     platforms: [
         .macOS(.v10_15),
     ],
@@ -25,6 +25,9 @@ let package = Package(
             name: "VaporDocC",
             dependencies: [
                 .product(name: "Vapor", package: "vapor"),
+            ],
+            resources: [
+                .copy("SpotifyWebAPI.doccarchive")
             ]
         ),
         .testTarget(
