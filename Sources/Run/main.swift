@@ -52,6 +52,8 @@ guard let docCArchiveURL = bundle.url(
 
 #endif
 
+print("docCArchiveURL: \(docCArchiveURL)")
+
 let redirectRoot = "documentation/SpotifyWebAPI"
 let redirectMissingTrailingSlash = ProcessInfo.processInfo.environment[
     "REDIRECT_MISSING_TRAILING_SLASH"
