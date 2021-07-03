@@ -9,7 +9,7 @@ defer { app.shutdown() }
 app.http.server.configuration.hostname = "0.0.0.0"
 
 
-#if DEBUG
+#if !DEBUG
 
 guard let docCArchiveURL = docCArchiveURL else {
     fatalError("could not find SpotifyWebAPI.doccarchive in bundle")
@@ -18,8 +18,31 @@ guard let docCArchiveURL = docCArchiveURL else {
 #else  // RELEASE configuration on heroku
 
 let path = "/app/.swift-bin/SpotifyAPIDocs_VaporDocC.resources"
+
+let contents = try FileManager.default.contentsOfDirectory(
+    atPath: path
+)
+print("found \(contents.count) items in folder \(path)")
+for file in contents {
+    print(file)
+}
+print("---")
+
 guard let bundle = Bundle(path: path) else {
     fatalError("could not create bundle from path \(path)")
+}
+if let resourceURL = bundle.resourceURL {
+    let contents = try FileManager.default.contentsOfDirectory(
+        atPath: resourceURL.path
+    )
+    print("found \(contents.count) items in resourceURL \(path)")
+    for file in contents {
+        print(file)
+    }
+    print("---")
+}
+else {
+    print("bundle.resourceURL was nil")
 }
 guard let docCArchiveURL = bundle.url(
     forResource: "SpotifyWebAPI", withExtension: "doccarchive"
