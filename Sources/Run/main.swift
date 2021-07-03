@@ -14,7 +14,9 @@ guard let docCArchiveURL = docCArchiveURL else {
 }
 
 let redirectRoot = "documentation/SpotifyWebAPI"
-let redirectMissingTrailingSlash = ProcessInfo.processInfo.environment["REDIRECT_MISSING_TRAILING_SLASH"] == "TRUE"
+let redirectMissingTrailingSlash = ProcessInfo.processInfo.environment[
+    "REDIRECT_MISSING_TRAILING_SLASH"
+] == "TRUE"
 
 let middleware = VaporDocCMiddleware(
     archivePath: docCArchiveURL,
