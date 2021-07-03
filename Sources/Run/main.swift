@@ -31,19 +31,6 @@ print("---")
 guard let bundle = Bundle(path: path) else {
     fatalError("could not create bundle from path \(path)")
 }
-if let resourceURL = bundle.resourceURL {
-    let contents = try FileManager.default.contentsOfDirectory(
-        atPath: resourceURL.path
-    )
-    print("found \(contents.count) items in resourceURL \(path)")
-    for file in contents {
-        print(file)
-    }
-    print("---")
-}
-else {
-    print("bundle.resourceURL was nil")
-}
 guard let docCArchiveURL = bundle.url(
     forResource: "SpotifyWebAPI", withExtension: "doccarchive"
 ) else {
@@ -53,6 +40,17 @@ guard let docCArchiveURL = bundle.url(
 #endif
 
 print("docCArchiveURL: \(docCArchiveURL)")
+
+let enumerator = FileManager.default.enumerator(
+    atPath: docCArchiveURL.path
+)!
+
+while let item = enumerator.nextObject() as? String {
+    if enumerator.level >= 3 {
+        break
+    }
+    print(docCArchiveURL.appendingPathComponent(item).path)
+}
 
 let redirectRoot = "documentation/SpotifyWebAPI"
 let redirectMissingTrailingSlash = ProcessInfo.processInfo.environment[
