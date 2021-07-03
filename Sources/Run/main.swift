@@ -9,7 +9,7 @@ defer { app.shutdown() }
 app.http.server.configuration.hostname = "0.0.0.0"
 
 
-#if !DEBUG
+#if DEBUG
 
 guard let docCArchiveURL = docCArchiveURL else {
     fatalError("could not find SpotifyWebAPI.doccarchive in bundle")
