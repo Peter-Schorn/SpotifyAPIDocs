@@ -53,9 +53,6 @@ while let item = enumerator.nextObject() as? String {
 }
 
 let redirectRoot = "documentation/SpotifyWebAPI"
-let redirectMissingTrailingSlash = ProcessInfo.processInfo.environment[
-    "REDIRECT_MISSING_TRAILING_SLASH"
-] == "TRUE"
 
 let middleware = VaporDocCMiddleware(
     archivePath: docCArchiveURL,
