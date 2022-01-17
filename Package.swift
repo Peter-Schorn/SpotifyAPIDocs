@@ -11,7 +11,7 @@ let package = Package(
         .library(name: "VaporDocC", targets: ["VaporDocC"]),
     ],
     dependencies: [
-        .package(name: "vapor", url: "https://github.com/vapor/Vapor.git", from: "4.0.0"),
+        .package(name: "vapor", url: "https://github.com/vapor/Vapor.git", from: "4.54.1"),
     ],
     targets: [
         .target(
