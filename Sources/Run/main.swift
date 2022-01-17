@@ -52,7 +52,7 @@ while let item = enumerator.nextObject() as? String {
     print(docCArchiveURL.appendingPathComponent(item).path)
 }
 
-let redirectRoot = "documentation/SpotifyWebAPI"
+let redirectRoot = "documentation/spotifywebapi"
 
 let middleware = VaporDocCMiddleware(
     archivePath: docCArchiveURL,
