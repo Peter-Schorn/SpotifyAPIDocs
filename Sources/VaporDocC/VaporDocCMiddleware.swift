@@ -50,6 +50,14 @@ public struct VaporDocCMiddleware: Middleware {
             )
         }
 
+        // "/documentation/SpotifyWebAPI"
+
+        if path == "/documentation/spotifywebapi" {
+            return request.eventLoop.makeSucceededFuture(
+                request.redirect(to: "/documentation/SpotifyWebAPI")
+            )
+        }
+
         path = String(path.dropFirst(self.prefix.count))
 
         let indexPrefixes = [
