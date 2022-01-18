@@ -9,40 +9,40 @@ defer { app.shutdown() }
 app.http.server.configuration.hostname = "0.0.0.0"
 
 
-#if DEBUG
-
+//#if DEBUG
+//
 guard let docCArchiveURL = docCArchiveURL else {
     fatalError("could not find SpotifyWebAPI.doccarchive in bundle")
 }
+//
+//#else  // RELEASE configuration on heroku
 
-#else  // RELEASE configuration on heroku
+//let path = "/app/.swift-bin/SpotifyAPIDocs_VaporDocC.resources"
+//
+//let contents = try FileManager.default.contentsOfDirectory(
+//    atPath: path
+//)
+//print("found \(contents.count) items in folder \(path)")
+//for file in contents {
+//    print(file)
+//}
+//print("---")
+//
+//guard let bundle = Bundle(path: path) else {
+//    fatalError("could not create bundle from path \(path)")
+//}
+//guard let docCArchiveURL = bundle.url(
+//    forResource: "SpotifyWebAPI", withExtension: "doccarchive"
+//) else {
+//    fatalError("could not find SpotifyWebAPI.doccarchive in bundle")
+//}
 
-let path = "/app/.swift-bin/SpotifyAPIDocs_VaporDocC.resources"
+//#endif
 
-let contents = try FileManager.default.contentsOfDirectory(
-    atPath: path
-)
-print("found \(contents.count) items in folder \(path)")
-for file in contents {
-    print(file)
-}
-print("---")
-
-guard let bundle = Bundle(path: path) else {
-    fatalError("could not create bundle from path \(path)")
-}
-guard let docCArchiveURL = bundle.url(
-    forResource: "SpotifyWebAPI", withExtension: "doccarchive"
-) else {
-    fatalError("could not find SpotifyWebAPI.doccarchive in bundle")
-}
-
-#endif
-
-print("docCArchiveURL: \(docCArchiveURL)")
+app.logger.notice("docCArchiveURL: \(docCArchiveURL)")
 
 let redirectRoot = ProcessInfo.processInfo.environment["REDIRECT_ROOT"]!
-print("redirectRoot: \(redirectRoot)")
+app.logger.notice("redirectRoot: \(redirectRoot)")
 
 let middleware = VaporDocCMiddleware(
     archivePath: docCArchiveURL,

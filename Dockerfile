@@ -8,8 +8,8 @@ COPY Package.swift Package.swift
 COPY Package.resolved Package.resolved
 
 RUN swift package resolve
-RUN swift build --product Run --configuration release --enable-test-discovery
-RUN ln -s `swift build --configuration release --show-bin-path` /build/bin
+RUN swift build --product Run --configuration debug --enable-test-discovery
+RUN ln -s `swift build --configuration debug --show-bin-path` /build/bin
 
 FROM swift:5.5
 

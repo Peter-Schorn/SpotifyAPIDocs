@@ -123,12 +123,12 @@ public struct VaporDocCMiddleware: Middleware {
     }
 
     private func serveStaticFileRelativeToArchive(_ staticFilePath: String, request: Request) -> EventLoopFuture<Response> {
-        let staticFilePath = archivePath.appendingPathComponent(staticFilePath, isDirectory: false)
+        let staticFileURL = archivePath.appendingPathComponent(staticFilePath, isDirectory: false)
         return request.eventLoop.makeSucceededFuture(
             request
                 .fileio
                 .streamFile(
-                    at: staticFilePath.path
+                    at: staticFileURL.path
                 )
         )
     }
