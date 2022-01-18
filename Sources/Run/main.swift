@@ -41,18 +41,8 @@ guard let docCArchiveURL = bundle.url(
 
 print("docCArchiveURL: \(docCArchiveURL)")
 
-let enumerator = FileManager.default.enumerator(
-    atPath: docCArchiveURL.path
-)!
-
-while let item = enumerator.nextObject() as? String {
-    if enumerator.level >= 3 {
-        break
-    }
-    print(docCArchiveURL.appendingPathComponent(item).path)
-}
-
-let redirectRoot = "documentation/spotifywebapi"
+let redirectRoot = ProcessInfo.processInfo.environment["REDIRECT_ROOT"]!
+print("redirectRoot: \(redirectRoot)")
 
 let middleware = VaporDocCMiddleware(
     archivePath: docCArchiveURL,
